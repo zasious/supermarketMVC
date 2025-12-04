@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Supermarket App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <% if (user) { %>
+          <% if (user.role === 'admin') { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products/add">Add Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/orders">Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/users">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/shopping">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/orders">My Orders</a>
+            </li>
+          <% } %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

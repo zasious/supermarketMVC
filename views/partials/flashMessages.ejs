@@ -1,0 +1,10 @@
+<% if (errorMessages && errorMessages.length) { %>
+  <div class="alert alert-danger">
+    <%= errorMessages.join('<br>') %>
+  </div>
+<% } %>
+<% if (successMessages && successMessages.length) { %>
+  <div class="alert alert-success">
+    <%= successMessages.join('<br>') %>
+  </div>
+<% } %>
