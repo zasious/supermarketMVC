@@ -1,3 +1,4 @@
+// Cart model: DB helpers for cart and cart_items.
 const db = require('../db');
 
 const Cart = {

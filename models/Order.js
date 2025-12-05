@@ -1,3 +1,4 @@
+// Order model: orders, order_items, and reviews data access.
 const db = require('../db');
 
 const Order = {

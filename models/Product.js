@@ -1,3 +1,4 @@
+// Product model: DB queries for products and ratings.
 const db = require('../db');
 
 const Product = {

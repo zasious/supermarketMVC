@@ -1,3 +1,4 @@
+// Product controller: shopping, inventory, CRUD.
 const Product = require('../models/product');
 const multer = require('multer');
 

@@ -1,3 +1,4 @@
+// Authentication controller: login, register, logout.
 const db = require('../db');
 
 const AuthController = {
@@ -48,7 +49,8 @@ const AuthController = {
     },
 
     register: (req, res) => {
-        const { username, email, password, address, contact, role } = req.body;
+        const { username, email, password, address, contact } = req.body;
+        const role = 'user';
         
         const sql = 'INSERT INTO users (username, email, password, address, contact, role) VALUES (?, ?, SHA1(?), ?, ?, ?)';
         db.query(sql, [username, email, password, address, contact, role], (err, result) => {

@@ -1,3 +1,4 @@
+// MySQL connection helper
 const mysql = require('mysql2');
 require('dotenv').config(); // Load variables from .env
 

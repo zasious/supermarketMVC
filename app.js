@@ -1,3 +1,4 @@
+// Main application bootstrap: wires up middleware, routes, and controllers.
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
@@ -56,6 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 5. Expose user to all views
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
+  res.locals.hideAuthLinks = false;
   next();
 });
 
@@ -98,6 +100,7 @@ app.get('/admin/orders', checkAuthenticated, checkAdmin, OrderController.listAll
 app.get('/admin/dashboard', checkAuthenticated, checkAdmin, AdminController.dashboard);
 app.get('/admin/users', checkAuthenticated, checkAdmin, AdminController.listUsers);
 app.post('/admin/users/:id/delete', checkAuthenticated, checkAdmin, AdminController.deleteUser);
+app.post('/admin/users/:id/promote', checkAuthenticated, checkAdmin, AdminController.promoteUser);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

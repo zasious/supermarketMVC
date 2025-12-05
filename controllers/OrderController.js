@@ -1,3 +1,4 @@
+// Order controller: listing orders and per-item reviews.
 const Order = require('../models/Order');
 
 const OrderController = {

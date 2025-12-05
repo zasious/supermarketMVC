@@ -39,9 +39,16 @@
                   <td><%= u.contact %></td>
                   <td><%= u.address %></td>
                   <td class="text-end">
-                    <form method="POST" action="/admin/users/<%= u.id %>/delete" onsubmit="return confirm('Delete this user?');" style="margin:0;">
-                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                    </form>
+                    <div class="d-flex justify-content-end gap-2">
+                      <% if (u.role !== 'admin') { %>
+                        <form method="POST" action="/admin/users/<%= u.id %>/promote" onsubmit="return confirm('Promote this user to admin?');" style="margin:0;">
+                          <button type="submit" class="btn btn-sm btn-outline-primary">Promote</button>
+                        </form>
+                      <% } %>
+                      <form method="POST" action="/admin/users/<%= u.id %>/delete" onsubmit="return confirm('Delete this user?');" style="margin:0;">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
               <% }); %>

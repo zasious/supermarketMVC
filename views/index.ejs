@@ -6,27 +6,53 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <title>Supermarket App</title>
+  <style>
+    body, html { height: 100%; }
+    .hero {
+      min-height: 100vh;
+      background: url('https://s.yimg.com/ny/api/res/1.2/2Vz6WYzKvcprymlWK6h99A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03NDI-/https://s.yimg.com/os/creatr-uploaded-images/2023-06/8c8c95e0-1598-11ee-bff7-20362278524b') center/cover no-repeat;
+      position: relative;
+      color: #fff;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; }
+    .hero p { font-size: 1.1rem; }
+    .auth-page {
+      background: url('https://s.yimg.com/ny/api/res/1.2/2Vz6WYzKvcprymlWK6h99A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03NDI-/https://s.yimg.com/os/creatr-uploaded-images/2023-06/8c8c95e0-1598-11ee-bff7-20362278524b') center/cover no-repeat;
+    }
+  </style>
 </head>
 <body>
     <%- include('partials/navbar') %>
 
-    <div class="container">
-        <p style="text-align: center;">
-            <% if (user) {%>
-              <% if (user.role === "admin") { %>
-                <br>
-                Back to <a href="/inventory">inventory!</a>
-              <% } else { %>
-                <br>
-                Continue <a href="/">Shopping!</a>
-                <% } %>
-            <% } else { %>
-            <br>
-            Welcome to supermarket app! <br>
-            Please <a href = "/login" >login</a> to continue...
-            <% } %>
-        </p>
-        
-    </div>
+    <section class="hero d-flex align-items-center justify-content-center">
+      <div class="hero-content container">
+        <h1>Welcome to Supermarket App</h1>
+        <p class="mb-4">Shop your favourites with ease.</p>
+        <% if (!user) { %>
+          <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-primary btn-lg" href="/login">Login</a>
+            <a class="btn btn-outline-light btn-lg" href="/register">Register</a>
+          </div>
+        <% } else { %>
+          <% if (user.role === 'admin') { %>
+            <a class="btn btn-primary btn-lg" href="/admin/dashboard">Go to Dashboard</a>
+          <% } else { %>
+            <a class="btn btn-primary btn-lg" href="/shopping">Start Shopping</a>
+          <% } %>
+        <% } %>
+      </div>
+    </section>
 </body>
 </html>

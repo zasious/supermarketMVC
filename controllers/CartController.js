@@ -1,3 +1,4 @@
+// Cart controller: view/update cart and checkout to orders.
 const Cart = require('../models/Cart');
 const Order = require('../models/Order');
 

@@ -1,3 +1,4 @@
+// Admin controller: dashboard, orders, users.
 const db = require('../db');
 
 const AdminController = {
@@ -56,6 +57,25 @@ const AdminController = {
     db.query(sql, [userId], (err) => {
       if (err) return next(err);
       req.flash('success', 'User deleted');
+      res.redirect('/admin/users');
+    });
+  },
+
+  promoteUser: (req, res, next) => {
+    const targetId = Number(req.params.id);
+    if (!targetId) {
+      req.flash('error', 'Invalid user');
+      return res.redirect('/admin/users');
+    }
+    // prevent self-demotion/loops; only allow promoting non-admins
+    const sql = 'UPDATE users SET role = "admin" WHERE id = ? AND role != "admin"';
+    db.query(sql, [targetId], (err, result) => {
+      if (err) return next(err);
+      if (result.affectedRows === 0) {
+        req.flash('error', 'User already admin or not found');
+      } else {
+        req.flash('success', 'User promoted to admin');
+      }
       res.redirect('/admin/users');
     });
   }
